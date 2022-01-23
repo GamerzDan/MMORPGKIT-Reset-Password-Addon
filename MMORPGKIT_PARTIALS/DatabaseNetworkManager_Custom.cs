@@ -13,7 +13,7 @@ namespace MultiplayerARPG.MMO
         [DevExtMethods("RegisterMessages")]
         protected void DevExtRegisterMessages()
         {
-            RegisterRequestToServer<CreateUserLoginReq, EmptyMessage>(DatabaseRequestTypes.RequestCreateUserLogin, CreateUserLogin);
+            RegisterRequestToServer<CreateUserLoginReq, EmptyMessage>(DatabaseRequestTypes.RequestUpdateUserLogin, UpdateUserLogin);
         }
     }
 }

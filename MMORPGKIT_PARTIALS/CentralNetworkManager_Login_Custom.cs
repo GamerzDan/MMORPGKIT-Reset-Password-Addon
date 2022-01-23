@@ -36,7 +36,9 @@ namespace MultiplayerARPG.MMO
             else if (username.Length > maxUsernameLength)
                 message = UITextKeys.UI_ERROR_USERNAME_TOO_LONG;
             else if (string.IsNullOrEmpty(password) || password.Length < minPasswordLength)
+            {
                 message = UITextKeys.UI_ERROR_PASSWORD_TOO_SHORT;
+            }
             else
             {
                 await DbServiceClient.UpdateUserLoginAsync(new CreateUserLoginReq()
