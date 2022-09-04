@@ -13,7 +13,7 @@ namespace MultiplayerARPG.MMO
 {
     public partial class MySQLDatabase : BaseDatabase
     {
-        public override async UniTask UpdateUserLogin(string username, string password)
+        public override async UniTask UpdateUserLogin(string username, string password, string email)
         {
             await ExecuteNonQuery("UPDATE userlogin SET password=@password WHERE username=@username",
                 new MySqlParameter("@username", username),

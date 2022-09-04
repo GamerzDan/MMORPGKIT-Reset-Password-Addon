@@ -11,7 +11,7 @@ namespace MultiplayerARPG.MMO
         {
 #if UNITY_STANDALONE && !CLIENT_BUILD
             cachedUsernames.Add(request.Username);
-            await Database.UpdateUserLogin(request.Username, request.Password);
+            await Database.UpdateUserLogin(request.Username, request.Password, request.Email);
             result.Invoke(AckResponseCode.Success, EmptyMessage.Value);
 #endif
         }

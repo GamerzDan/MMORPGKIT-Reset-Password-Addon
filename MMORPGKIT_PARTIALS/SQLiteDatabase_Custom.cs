@@ -13,7 +13,7 @@ namespace MultiplayerARPG.MMO
 {
     public partial class SQLiteDatabase : BaseDatabase
     {
-        public override async UniTask UpdateUserLogin(string username, string password)
+        public override async UniTask UpdateUserLogin(string username, string password, string email)
         {
             await UniTask.Yield();
             ExecuteNonQuery("UPDATE userlogin SET password=@password WHERE username=@username",

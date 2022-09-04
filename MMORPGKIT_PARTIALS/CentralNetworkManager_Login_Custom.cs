@@ -25,11 +25,12 @@ namespace MultiplayerARPG.MMO
             UITextKeys message = UITextKeys.NONE;
             string username = request.username;
             string password = request.password;
-            FindUsernameResp findUsernameResp = await DbServiceClient.FindUsernameAsync(new FindUsernameReq()
+            string email = request.email;
+            AsyncResponseData<FindUsernameResp> findUsernameResp = await DbServiceClient.FindUsernameAsync(new FindUsernameReq()
             {
                 Username = username
             });
-            if (findUsernameResp.FoundAmount < 1)
+            if (findUsernameResp.Response.FoundAmount < 1)
                 message = UITextKeys.UI_ERROR_INVALID_USERNAME_OR_PASSWORD;
             else if (string.IsNullOrEmpty(username) || username.Length < minUsernameLength)
                 message = UITextKeys.UI_ERROR_USERNAME_TOO_SHORT;
@@ -44,7 +45,8 @@ namespace MultiplayerARPG.MMO
                 await DbServiceClient.UpdateUserLoginAsync(new CreateUserLoginReq()
                 {
                     Username = username,
-                    Password = password
+                    Password = password,
+                    Email = email,
                 });
             }
             // Response
