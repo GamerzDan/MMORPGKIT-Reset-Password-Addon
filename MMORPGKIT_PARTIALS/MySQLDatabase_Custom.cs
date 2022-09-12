@@ -6,7 +6,7 @@ using MiniJSON;
 using System;
 using System.IO;
 using Cysharp.Threading.Tasks;
-#endif
+
 using UnityEngine;
 
 namespace MultiplayerARPG.MMO
@@ -22,3 +22,4 @@ namespace MultiplayerARPG.MMO
     }
 
 }
+#endif

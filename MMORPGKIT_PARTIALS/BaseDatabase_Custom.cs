@@ -1,7 +1,7 @@
 #if UNITY_STANDALONE && !CLIENT_BUILD
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-#endif
+
 using UnityEngine;
 
 namespace MultiplayerARPG.MMO
@@ -13,3 +13,4 @@ namespace MultiplayerARPG.MMO
 #endif
     }
 }
+#endif
