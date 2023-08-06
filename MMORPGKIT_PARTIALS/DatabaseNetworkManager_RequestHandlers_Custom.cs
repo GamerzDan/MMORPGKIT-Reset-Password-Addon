@@ -10,7 +10,7 @@ namespace MultiplayerARPG.MMO
         protected async UniTaskVoid UpdateUserLogin(RequestHandlerData requestHandler, CreateUserLoginReq request, RequestProceedResultDelegate<EmptyMessage> result)
         {
 #if UNITY_STANDALONE && !CLIENT_BUILD
-            cachedUsernames.Add(request.Username);
+            await DatabaseCache.AddUsername(request.Username);
             await Database.UpdateUserLogin(request.Username, request.Password, request.Email);
             result.Invoke(AckResponseCode.Success, EmptyMessage.Value);
 #endif
