@@ -26,7 +26,7 @@ namespace MultiplayerARPG.MMO
             string username = request.username;
             string password = request.password;
             string email = request.email;
-            DatabaseApiResult<FindUsernameResp> findUsernameResp = await DbServiceClient.FindUsernameAsync(new FindUsernameReq()
+            DatabaseApiResult<FindUsernameResp> findUsernameResp = await DatabaseClient.FindUsernameAsync(new FindUsernameReq()
             {
                 Username = username
             });
@@ -42,7 +42,7 @@ namespace MultiplayerARPG.MMO
             }
             else
             {
-                await DbServiceClient.UpdateUserLoginAsync(new CreateUserLoginReq()
+                await DatabaseClient.UpdateUserLoginAsync(new CreateUserLoginReq()
                 {
                     Username = username,
                     Password = password,
