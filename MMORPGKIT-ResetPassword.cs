@@ -71,10 +71,12 @@ namespace MultiplayerARPG.MMO
     {
         public override async UniTask UpdateUserLogin(string username, string password, string email)
         {
+#if UNITY_STANDALONE && UNITY_SERVER
             await UniTask.Yield();
             ExecuteNonQuery("UPDATE userlogin SET password=@password WHERE username=@username",
                 new SqliteParameter("@username", username),
                 new SqliteParameter("@password", password.PasswordHash()));
+#endif
         }
     }
 
@@ -82,9 +84,11 @@ namespace MultiplayerARPG.MMO
     {
         public override async UniTask UpdateUserLogin(string username, string password, string email)
         {
+ #if UNITY_STANDALONE && UNITY_SERVER
             await ExecuteNonQuery("UPDATE userlogin SET password=@password WHERE username=@username",
                 new MySqlParameter("@username", username),
                 new MySqlParameter("@password", password.PasswordHash()));
+#endif
         }
     }
 
