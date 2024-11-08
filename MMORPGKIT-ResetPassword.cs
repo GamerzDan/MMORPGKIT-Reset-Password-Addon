@@ -4,8 +4,10 @@ using LiteNetLib;
 using LiteNetLibManager;
 using UnityEngine;
 
+#if UNITY_STANDALONE
 using Mono.Data.Sqlite;
 using MySqlConnector;
+#endif
 
 namespace MultiplayerARPG.MMO
 {
@@ -24,9 +26,9 @@ namespace MultiplayerARPG.MMO
 
     public abstract partial class BaseDatabase : MonoBehaviour
     {
-        #if (UNITY_STANDALONE && !CLIENT_BUILD) || UNITY_EDITOR
+//#if (UNITY_STANDALONE && !CLIENT_BUILD) || UNITY_EDITOR
         public abstract UniTask UpdateUserLogin(string username, string password, string email);
-        #endif
+//#endif
     }
 
     public partial interface IDatabaseClient
@@ -84,7 +86,7 @@ namespace MultiplayerARPG.MMO
     {
         public override async UniTask UpdateUserLogin(string username, string password, string email)
         {
- #if UNITY_STANDALONE && UNITY_SERVER
+#if UNITY_STANDALONE && UNITY_SERVER
             await ExecuteNonQuery("UPDATE userlogin SET password=@password WHERE username=@username",
                 new MySqlParameter("@username", username),
                 new MySqlParameter("@password", password.PasswordHash()));
